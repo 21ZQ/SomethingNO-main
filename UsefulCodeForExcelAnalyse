@@ -1,0 +1,26 @@
++++++++++++++++++++++将控制台的输出，保存成log文件++++++++++++++++++++++++++++++++++++
+
+3 自定义logger
+
+我们可以在python程序中自定义一个记录者类，用来同时写文件以及在控制台进行显示。一个例子如下：
+
+import sys
+class Logger(object):
+    def __init__(self, filename='default.log', stream=sys.stdout):
+    self.terminal = stream
+    self.log = open(filename, 'a')
+ 
+    def write(self, message):
+    self.terminal.write(message)
+    self.log.write(message)
+ 
+    def flush(self):
+    pass
+ 
+sys.stdout = Logger(a.log, sys.stdout)
+sys.stderr = Logger(a.log_file, sys.stderr)     # redirect std err, if necessary
+ 
+# now it works
+print 'print something'
+此时控制台的显示也同原先一样正常。
++++++++++++++++++++++将控制台的输出，保存成log文件++++++++++++++++++++++++++++++++++++
